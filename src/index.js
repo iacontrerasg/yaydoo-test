@@ -14,8 +14,8 @@ app.use((req, res, next) => {
 app.listen(PORT, async () => {
   console.log(`Up & Running on port: ${PORT}`);
   try {
-    //const productos = await scrapeAmazon();
-    //saveProducts(productos);
+    const productos = await scrapeAmazon();
+    saveProducts(productos);
   } catch (e) {
     console.log("TODO: Custom Error Handling", e);
   }
