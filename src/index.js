@@ -1,6 +1,6 @@
 const express = require("express");
-//const { scrapeAmazon } = require("./services/scraperService");
-//const { saveProducts } = require("./services/databaseService");
+const { scrapeAmazon } = require("./services/scraperService");
+const { saveProducts } = require("./services/databaseService");
 
 const app = express();
 const PORT = process.env.PORT || 8082;
@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 8082;
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, GET");
+  
   next();
 });
 
