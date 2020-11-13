@@ -1,0 +1,65 @@
+{
+  "name": "yaydoo-test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "aa-sqlite": "^1.0.29",
+    "express": "^4.17.1",
+    "moment": "^2.29.1",
+    "scrape-it": "^5.2.4",
+    "sqlite3": "^5.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-node8": "^1.2.0",
+    "chai": "^4.2.0",
+    "config": "^3.3.2",
+    "eslint": "^7.13.0",
+    "eslint-plugin-chai-friendly": "^0.6.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-security": "^1.4.0",
+    "mocha": "^8.2.1",
+    "nodemon": "^2.0.6",
+    "supertest": "^6.0.1"
+  },
+  "scripts": {
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "build": "babel src -d build",
+    "serve": "NODE_ENV=production node build/index.js",
+    "start": "NODE_ENV=development babel-node src/index.js",
+    "dev": "yarn lint && DEBUG=server:debug NODE_ENV=development nodemon src/index.js --exec babel-node",
+    "test": "DEBUG=server:debug NODE_ENV=test mocha  --require  babel-core/register --reporter spec --exit   tests/ --exec babel-node",
+    "test:watch": "DEBUG=server:debug NODE_ENV=development mocha  --require babel-core/register --watch --reporter  spec   tests/ --exec babel-node"
+  },
+  "babel": {
+    "presets": [
+      "node8"
+    ]
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "eslintConfig": {
+    "plugins": [
+      "node"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:node/recommended"
+    ],
+    "rules": {
+      "node/no-unsupported-features/es-syntax": 0,
+      "node/no-unsupported-features/es-builtins": 0,
+      "node/no-unpublished-import": 0
+    },
+    "env": {
+      "node": true,
+      "es6": true
+    },
+    "parserOptions": {
+      "sourceType": "module",
+      "ecmaVersion": 2018
+    }
+  }
+}
