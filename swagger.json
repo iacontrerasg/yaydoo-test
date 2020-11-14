@@ -1,0 +1,157 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "API Scraper Amazon",
+    "description": "Ejemplo de documentación en swagger para prueba Yaydoo. Se considera localhost y el puerto 8082 para la URL base, en el deploy de producción se debera cambiar la URL base."
+  },
+  "host": "localhost:8082",
+  "basePath": "/v1",
+  "tags": [
+    {
+      "name": "Productos y Categorias",
+      "description": "API de productos y categorías"
+    }
+  ],
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/products": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Obtiene todos los productos",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ProductResult"
+            }
+          }
+        }
+      }
+    },
+    "/products/{id}": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Obtiene todos los productos de una categoría específica",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "path",
+            "required": true,
+            "description": "Categoría",
+            "schema": {
+              "$ref": "#/definitions/ProductResult"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ProductResult"
+            }
+          }
+        }
+      }
+    },
+    "/products/reload": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Vuelve a ejecutar el scraper y actualiza la base de datos",
+        "responses": {
+          "200": {
+            "description": "Correcto",
+            "schema": {
+              "$ref": "#/definitions/updateResponse"
+            }
+          }
+        }
+      }
+    },
+    "/categories": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Obtiene todos los productos",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CategoryResults"
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "definitions": {
+    "Product": {
+      "properties": {
+        "rank": {
+          "type": "integer",
+          "uniqueItems": true
+        },
+        "name": {
+          "type": "string"
+        },
+        "coverImage": {
+          "type": "string"
+        },
+        "brandAuthor": {
+          "type": "string"
+        },
+        "price": {
+          "type": "string"
+        },
+        "rating": {
+          "type": "object",
+          "properties": {
+            "total": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "Categories": {
+      "properties": {
+        "category": {
+          "type": "string",
+          "uniqueItems": true
+        }
+      }
+    },
+
+    "updateResponse": {
+      "properties": {
+        "msg": {
+          "type": "string"
+        }
+      }
+    },
+    "ProductResult": {
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "products": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/Product" }
+        }
+      }
+    },
+    "CategoryResults": {
+      "properties": {
+        "categories": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/Categories" }
+        }
+      }
+    }
+  }
+}
