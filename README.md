@@ -2,6 +2,11 @@
 
 Backend de prueba técnica yaydoo - Isaac Contreras
 
+Se puede visualizar una version en producción en (https://yaydoo-test.herokuapp.com/docs)
+
+Se desarrollo un front básico para visualisar la funcionalidad (https://yaydoo-test.netlify.app)
+
+
 ## Instalación
 
 Instalar dependencias con yarn
