@@ -78,13 +78,11 @@ const getProductsByCategoryController = async (req, res) => {
     };
     response.push(obj);
 
-    if (response.products === undefined) {
-      res
-        .status(400)
-        .send({
-          error: true,
-          msg: "La categoría no contiene productos o no existe",
-        });
+    if (response[0].products.length === 0) {
+      res.status(400).send({
+        error: true,
+        msg: "La categoría no contiene productos o no existe",
+      });
     } else {
       res.send(response);
     }
