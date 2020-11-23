@@ -48,6 +48,14 @@ const getCategories = async () => {
   return categories;
 };
 
+const getCategoryByName = async (category) => {
+  await sqlite.open("./products");
+  let sql = `SELECT DISTINCT category FROM productos WHERE category =?`;
+  let r = await sqlite.all(sql, [category]);
+
+  return r;
+};
+
 const getAllProducts = async () => {
   await sqlite.open("./products");
   let sql = "SELECT * FROM productos";
@@ -66,3 +74,4 @@ module.exports.saveProducts = saveProducts;
 module.exports.getCategories = getCategories;
 module.exports.getAllProducts = getAllProducts;
 module.exports.getProductsByCategory = getProductsByCategory;
+module.exports.getCategoryByName = getCategoryByName;

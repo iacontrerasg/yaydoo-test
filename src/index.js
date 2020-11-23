@@ -19,8 +19,8 @@ app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.listen(PORT, async () => {
   console.log(`Up & Running on port: ${PORT}`);
   try {
-    const productos = await scrapeAmazon();
-    saveProducts(productos);
+    //const productos = await scrapeAmazon();
+    //saveProducts(productos);
   } catch (e) {
     console.log("TODO: Custom Error Handling", e);
   }

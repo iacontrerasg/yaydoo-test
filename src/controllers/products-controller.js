@@ -40,6 +40,7 @@ const getAllProductsController = async (req, res) => {
         category: currentCategory,
         products: formattedProducts,
       };
+
       response.push(obj);
     }
 
@@ -77,7 +78,16 @@ const getProductsByCategoryController = async (req, res) => {
     };
     response.push(obj);
 
-    res.send(response);
+    if (response.products === undefined) {
+      res
+        .status(400)
+        .send({
+          error: true,
+          msg: "La categoría no contiene productos o no existe",
+        });
+    } else {
+      res.send(response);
+    }
   } catch (e) {
     res.statusCode(500).send("ooops! Algo salió mal! :(");
   }
