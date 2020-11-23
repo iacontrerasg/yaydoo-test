@@ -87,7 +87,8 @@ const reloadAllProducts = async (req, res) => {
   try {
     const productos = await scrapeAmazon();
     saveProducts(productos);
-    res.send({ msg: "Productos actualizados" });
+    let categories = await getCategories();
+    res.send(categories);
   } catch (e) {
     console.log("TODO: Custom Error Handling", e);
     res.statusCode(500).send("ooops! Algo salió mal! :(");
